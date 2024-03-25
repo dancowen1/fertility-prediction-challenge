@@ -6,7 +6,6 @@
 # It is important to document your training steps here, including seed, 
 # number of folds, model, et cetera
 
-
 train_save_model <- function(clean_df) {
   # Trains a model using the cleaned dataframe and saves the model to a file.
   
@@ -17,9 +16,9 @@ train_save_model <- function(clean_df) {
   set.seed(33) # not useful here because logistic regression deterministic
   
   # Logistic regression model
-  model <- gam(new_child ~ age + cv20l247 + cv09b016 + cv19k023 + cr18k079   + cs14g104 + cs14g124 ,  data = clean_df, family = "binomial")
+  modelsvm <- e1071::svm(new_child ~ age + cv20l247 + cv09b016 + cv19k023 + cr18k079   + cs14g104 + cs14g124 ,  data = clean_df, type = 'C-classification',
+               kernel = "linear")
   
   # Save the model
   saveRDS(model, "model.rds")
-  
 }
