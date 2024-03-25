@@ -6,18 +6,20 @@
 # It is important to document your training steps here, including seed, 
 # number of folds, model, et cetera
 
+
 train_save_model <- function(clean_df) {
   # Trains a model using the cleaned dataframe and saves the model to a file.
-
+  
   # Parameters:
   # cleaned_df (dataframe): The cleaned data from clean_df function to be used for training the model.
-
+  
   ## This script contains a bare minimum working example
-  set.seed(1) # not useful here because logistic regression deterministic
+  set.seed(33) # not useful here because logistic regression deterministic
   
   # Logistic regression model
-  model <- glm(new_child ~ age, family = "binomial", data = clean_df)
+  model <- gam(new_child ~ age + cv20l247 + cv09b016 + cv19k023 + cr18k079   + cs14g104 + cs14g124 ,  data = clean_df, family = "binomial")
   
   # Save the model
   saveRDS(model, "model.rds")
+  
 }
